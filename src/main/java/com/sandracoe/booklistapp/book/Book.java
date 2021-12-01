@@ -3,6 +3,7 @@ package com.sandracoe.booklistapp.book;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
 @Entity
 public class Book {
 
@@ -15,8 +16,8 @@ public class Book {
     private String isbn;
     private String publishedDate;
 
-    //@ManyToMany
-//    private Category category;
+   // @ManyToMany
+    //private Users users;
 
     public Book() {
         
