@@ -11,22 +11,24 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
-    public List<Users> getAllBooks() {
-        List<Users> categories = new ArrayList<Users>();
+    
+    public List<Users> getAllUsers() {
+        List<Users> users = new ArrayList<Users>();
         repository.findAll()
-        .forEach(categories::add);
-        return categories;
+        .forEach(users::add);
+        return users;
     }
 
-    public void addBook(Users book) {
-        repository.save(book);
+    public void addUser(Users user) {
+        repository.save(user);
     }
 
-    public void updateBook(Users book) {
-        repository.save(book);
+    public void updateUser(Users user) {
+        repository.save(user);
     }
 
-    public void removeBook(String bookId) {
-        repository.deleteById(bookId);
+    public void removeUser(String userId) {
+        repository.deleteById(userId);
     }
+
 }

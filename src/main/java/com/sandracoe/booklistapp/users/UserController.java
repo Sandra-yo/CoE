@@ -15,20 +15,20 @@ public class UserController {
     @Autowired
     UserService service;
 
-    @RequestMapping("/categories")
-    public List<Users> getAllBooks() {
-        return service.getAllBooks();
+    @RequestMapping("/users")
+    public List<Users> getAllUsers() {
+        return service.getAllUsers();
     }
-    @RequestMapping(method = RequestMethod.POST, value = "/categories")
-    public void addBook(@RequestBody Users book) {
-        service.addBook(book);
+    @RequestMapping(method = RequestMethod.POST, value = "/users")
+    public void addUser(@RequestBody Users user) {
+        service.addUser(user);
     }
-    @RequestMapping(method = RequestMethod.PUT, value = "/categories/{id}")
-    public void updateBook(@RequestBody Users book, @PathVariable String id) {
-        service.updateBook(book);
+    @RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
+    public void updateUser(@RequestBody Users user, @PathVariable String id) {
+        service.updateUser(user);
     }
-    @RequestMapping(method = RequestMethod.DELETE, value = "/categories/{id}")
-    public void removeBook(@PathVariable String id) {
-        service.removeBook(id);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
+    public void removeUser(@PathVariable String id) {
+        service.removeUser(id);
     }
 }
