@@ -11,22 +11,22 @@ public class CategoryService {
     @Autowired
     CategoryRepository repository;
 
-    public List<Category> getAllBooks() {
+    public List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<Category>();
         repository.findAll()
         .forEach(categories::add);
         return categories;
     }
 
-    public void addBook(Category book) {
-        repository.save(book);
+    public void addCategory(Category category) {
+        repository.save(category);
     }
 
-    public void updateBook(Category book) {
-        repository.save(book);
+    public void updateCategory(Category category) {
+        repository.save(category);
     }
 
-    public void removeBook(String bookId) {
-        repository.deleteById(bookId);
+    public void removeCategory(String CategoryId) {
+        repository.deleteById(CategoryId);
     }
 }

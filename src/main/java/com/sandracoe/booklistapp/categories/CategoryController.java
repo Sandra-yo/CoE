@@ -16,19 +16,19 @@ public class CategoryController {
     CategoryService service;
 
     @RequestMapping("/categories")
-    public List<Category> getAllBooks() {
-        return service.getAllBooks();
+    public List<Category> getAllCategories() {
+        return service.getAllCategories();
     }
     @RequestMapping(method = RequestMethod.POST, value = "/categories")
-    public void addBook(@RequestBody Category book) {
-        service.addBook(book);
+    public void addCategory(@RequestBody Category category) {
+        service.addCategory(category);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/categories/{id}")
-    public void updateBook(@RequestBody Category book, @PathVariable String id) {
-        service.updateBook(book);
+    public void updateCategory(@RequestBody Category category, @PathVariable String id) {
+        service.updateCategory(category);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/categories/{id}")
-    public void removeBook(@PathVariable String id) {
-        service.removeBook(id);
+    public void removeCategory(@PathVariable String id) {
+        service.removeCategory(id);
     }
 }
