@@ -1,19 +1,29 @@
 package com.sandracoe.booklistapp.book;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "Book")
 public class Book {
 
     @Id
+    @Column(name = "id")
     private String id;
+    @Column(name = "bookName")
     private String name;
+    @Column(name = "bookDescription")
     private String description;
+    @Column(name = "publisher")
     private String publisher;
+    @Column(name = "author")
     private String author;
+    @Column(name = "isbn")
     private String isbn;
+    @Column(name = "publishedDate")
     private String publishedDate;
 
    // @ManyToMany

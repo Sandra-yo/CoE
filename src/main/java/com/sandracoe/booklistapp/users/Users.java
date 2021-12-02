@@ -2,9 +2,6 @@ package com.sandracoe.booklistapp.users;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.sandracoe.booklistapp.book.Book;
 
 
 @Entity
@@ -18,8 +15,8 @@ public class Users {
     private String userName;
     private String password;
     
-    @OneToMany
-    private Book bookLiked;
+   // @OneToMany
+    //private Book bookLiked;
 
     public Users(){
         
