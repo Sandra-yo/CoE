@@ -1,12 +1,14 @@
-package com.sandracoe.booklistapp.book;
+package com.sandracoe.booklistapp.Services;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sandracoe.booklistapp.Entities.Book;
+import com.sandracoe.booklistapp.Entities.Category;
 import com.sandracoe.booklistapp.Objects.BookObj;
 import com.sandracoe.booklistapp.Objects.CategoryObj;
-import com.sandracoe.booklistapp.categories.Category;
-import com.sandracoe.booklistapp.categories.CategoryRepository;
+import com.sandracoe.booklistapp.Repositories.BookRepository;
+import com.sandracoe.booklistapp.Repositories.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

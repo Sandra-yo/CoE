@@ -1,4 +1,4 @@
-package com.sandracoe.booklistapp.book;
+package com.sandracoe.booklistapp.Entities;
 
 import java.util.List;
 
@@ -11,9 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.sandracoe.booklistapp.categories.Category;
-import com.sandracoe.booklistapp.users.Users;
 
 
 @Entity

@@ -1,4 +1,6 @@
-package com.sandracoe.booklistapp.users;
+package com.sandracoe.booklistapp.Repositories;
+
+import com.sandracoe.booklistapp.Entities.Users;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.sandracoe.booklistapp.categories;
+package com.sandracoe.booklistapp.Entities;
 
 import java.util.List;
 
@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import com.sandracoe.booklistapp.book.Book;
 
 
 

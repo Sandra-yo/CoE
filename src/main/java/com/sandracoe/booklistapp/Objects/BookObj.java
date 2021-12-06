@@ -1,6 +1,6 @@
 package com.sandracoe.booklistapp.Objects;
 
-import com.sandracoe.booklistapp.book.Book;
+import com.sandracoe.booklistapp.Entities.Book;
 
 public class BookObj {
     

@@ -1,9 +1,11 @@
-package com.sandracoe.booklistapp.users;
+package com.sandracoe.booklistapp.Controllers;
 
 import java.util.List;
 
+import com.sandracoe.booklistapp.Entities.Users;
 import com.sandracoe.booklistapp.Objects.BookObj;
 import com.sandracoe.booklistapp.Objects.UserObj;
+import com.sandracoe.booklistapp.Services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

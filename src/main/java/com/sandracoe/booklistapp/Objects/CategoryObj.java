@@ -1,6 +1,6 @@
 package com.sandracoe.booklistapp.Objects;
 
-import com.sandracoe.booklistapp.categories.Category;
+import com.sandracoe.booklistapp.Entities.Category;
 
 public class CategoryObj {
     private Integer id;

@@ -1,6 +1,6 @@
 package com.sandracoe.booklistapp.Objects;
 
-import com.sandracoe.booklistapp.users.Users;
+import com.sandracoe.booklistapp.Entities.Users;
 
 public class UserObj {
     private Integer id;
