@@ -26,7 +26,7 @@ public class BookService {
         repository.save(book);
     }
 
-    public void removeBook(String bookId) {
+    public void removeBook(Integer bookId) {
         repository.deleteById(bookId);
     }
 }

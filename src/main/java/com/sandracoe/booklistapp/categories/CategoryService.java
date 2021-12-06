@@ -26,7 +26,7 @@ public class CategoryService {
         repository.save(category);
     }
 
-    public void removeCategory(String CategoryId) {
+    public void removeCategory(Integer CategoryId) {
         repository.deleteById(CategoryId);
     }
 }

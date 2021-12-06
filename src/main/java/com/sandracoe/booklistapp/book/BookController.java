@@ -24,11 +24,11 @@ public class BookController {
         service.addBook(book);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/books/{id}")
-    public void updateBook(@RequestBody Book book, @PathVariable String id) {
+    public void updateBook(@RequestBody Book book, @PathVariable Integer id) {
         service.updateBook(book);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/books/{id}")
-    public void removeBook(@PathVariable String id) {
+    public void removeBook(@PathVariable Integer id) {
         service.removeBook(id);
     }
 }

@@ -1,9 +1,18 @@
 package com.sandracoe.booklistapp.book;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.sandracoe.booklistapp.users.Users;
 
 
 @Entity
@@ -12,7 +21,8 @@ public class Book {
 
     @Id
     @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     @Column(name = "bookName")
     private String name;
     @Column(name = "bookDescription")
@@ -26,14 +36,14 @@ public class Book {
     @Column(name = "publishedDate")
     private String publishedDate;
 
-   // @ManyToMany
-    //private Users users;
+    @ManyToMany(mappedBy = "booksLiked", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Users> users;
 
     public Book() {
         
     }
    
-    public Book(String id,String name, String description, String publisher, String author, String isbn,
+    public Book(Integer id,String name, String description, String publisher, String author, String isbn,
                 String publishedDate) {
         this.id = id;
         this.name = name;
@@ -44,11 +54,16 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    
-    public String getId() {
+    public void setUsers(List<Users> users) {
+        this.users = users;
+    }
+    public List<Users> getUsers() {
+        return users;
+    }
+    public Integer getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getName() {
@@ -86,5 +101,26 @@ public class Book {
     }
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+    @Override
+    public int hashCode() {
+       final int prime = 31;
+       int result = 1;
+       result = prime * result+((this.id == null)?0 : this.id.hashCode());
+       return result; 
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Book){
+            Book book = (Book) obj;
+            if(this.id == book.id){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 }

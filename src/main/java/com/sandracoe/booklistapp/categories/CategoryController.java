@@ -24,11 +24,11 @@ public class CategoryController {
         service.addCategory(category);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/categories/{id}")
-    public void updateCategory(@RequestBody Category category, @PathVariable String id) {
+    public void updateCategory(@RequestBody Category category, @PathVariable Integer id) {
         service.updateCategory(category);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/categories/{id}")
-    public void removeCategory(@PathVariable String id) {
+    public void removeCategory(@PathVariable Integer id) {
         service.removeCategory(id);
     }
 }
