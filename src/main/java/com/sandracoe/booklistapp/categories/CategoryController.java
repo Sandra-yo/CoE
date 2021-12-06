@@ -2,6 +2,8 @@ package com.sandracoe.booklistapp.categories;
 
 import java.util.List;
 
+import com.sandracoe.booklistapp.Objects.CategoryObj;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,7 @@ public class CategoryController {
     CategoryService service;
 
     @RequestMapping("/categories")
-    public List<Category> getAllCategories() {
+    public List<CategoryObj> getAllCategories() {
         return service.getAllCategories();
     }
     @RequestMapping(method = RequestMethod.POST, value = "/categories")

@@ -2,6 +2,9 @@ package com.sandracoe.booklistapp.book;
 
 import java.util.List;
 
+import com.sandracoe.booklistapp.Objects.BookObj;
+import com.sandracoe.booklistapp.Objects.CategoryObj;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +19,7 @@ public class BookController {
     BookService service;
 
     @RequestMapping("/books")
-    public List<Book> getAllBooks() {
+    public List<BookObj> getAllBooks() {
         return service.getAllBooks();
     }
     @RequestMapping(method = RequestMethod.POST, value = "/books")
@@ -31,4 +34,15 @@ public class BookController {
     public void removeBook(@PathVariable Integer id) {
         service.removeBook(id);
     }
+     // Assign category
+     @RequestMapping(method = RequestMethod.POST, value = "/books/{id}/category/{categoryId}")
+     public void assignCategory(@PathVariable Integer id, @PathVariable Integer categoryId) {
+         service.assignCategory(id, categoryId);
+     }
+     //see Categories
+    @RequestMapping(value = "/books/{id}/category/")
+    public List<CategoryObj> getBooks(@PathVariable Integer id) {
+        return service.getCategories(id);
+    }
+    
 }

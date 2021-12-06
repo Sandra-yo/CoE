@@ -1,9 +1,14 @@
 package com.sandracoe.booklistapp.categories;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.sandracoe.booklistapp.book.Book;
 
 
 
@@ -14,8 +19,8 @@ public class Category {
     private Integer id;
     private String categoryName;
 
-    //@ManyToMany
-   // private Book books;
+    @ManyToMany(mappedBy = "categories")
+    private List<Book> books;
     
 
     public Category(Integer id, String categoryName) {
@@ -25,7 +30,13 @@ public class Category {
     public Category() {
         
     }
-    
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+    public List<Book> getBooks() {
+        return books;
+    }
     public Integer getId() {
         return id;
     }

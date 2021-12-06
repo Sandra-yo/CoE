@@ -1,53 +1,31 @@
-package com.sandracoe.booklistapp.book;
+package com.sandracoe.booklistapp.Objects;
 
-import java.util.List;
+import com.sandracoe.booklistapp.book.Book;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-import com.sandracoe.booklistapp.categories.Category;
-import com.sandracoe.booklistapp.users.Users;
-
-
-@Entity
-@Table(name = "Book")
-public class Book {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class BookObj {
+    
     private Integer id;
-    @Column(name = "bookName")
     private String name;
-    @Column(name = "bookDescription")
     private String description;
-    @Column(name = "publisher")
     private String publisher;
-    @Column(name = "author")
     private String author;
-    @Column(name = "isbn")
     private String isbn;
-    @Column(name = "publishedDate")
     private String publishedDate;
 
-    @ManyToMany(mappedBy = "booksLiked", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Users> users;
-    
-    @ManyToMany
-    private List<Category> categories;
-
-    public Book() {
+    public BookObj() {
         
     }
    
-    public Book(Integer id,String name, String description, String publisher, String author, String isbn,
+    public BookObj(Book book) {
+        this.id = book.getId();
+        this.name = book.getName();
+        this.description = book.getDescription();
+        this.publisher = book.getPublisher();
+        this.author = book.getAuthor();
+        this.isbn = book.getIsbn();
+        this.publishedDate = book.getPublishedDate();
+    }
+    public BookObj(Integer id,String name, String description, String publisher, String author, String isbn,
                 String publishedDate) {
         this.id = id;
         this.name = name;
@@ -58,18 +36,6 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    public void setCategories(Category categories) {
-        this.categories.add(categories);
-    }
-    public List<Category> getCategories() {
-        return categories;
-    }
-    public void setUsers(List<Users> users) {
-        this.users = users;
-    }
-    public List<Users> getUsers() {
-        return users;
-    }
     public Integer getId() {
         return id;
     }
@@ -122,8 +88,8 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Book){
-            Book book = (Book) obj;
+        if(obj instanceof BookObj){
+            BookObj book = (BookObj) obj;
             if(this.id == book.id){
                 return true;
             }else{

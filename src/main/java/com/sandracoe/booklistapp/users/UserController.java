@@ -1,7 +1,9 @@
 package com.sandracoe.booklistapp.users;
 
 import java.util.List;
-import com.sandracoe.booklistapp.book.Book;
+
+import com.sandracoe.booklistapp.Objects.BookObj;
+import com.sandracoe.booklistapp.Objects.UserObj;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +19,11 @@ public class UserController {
     UserService service;
 
     @RequestMapping("/users")
-    public List<Users> getAllUsers() {
+    public List<UserObj> getAllUsers() {
         return service.getAllUsers();
     }
     @RequestMapping(value = "/users/{id}")
-    public Users getUser(@PathVariable Integer id) {
+    public UserObj getUser(@PathVariable Integer id) {
        return service.getUsers(id);
 
     }
@@ -44,7 +46,7 @@ public class UserController {
     }
     //see books
     @RequestMapping(value = "/users/{id}/book/")
-    public List<Book> getBooks(@PathVariable Integer id) {
+    public List<BookObj> getBooks(@PathVariable Integer id) {
         return service.getBooks(id);
     }
     

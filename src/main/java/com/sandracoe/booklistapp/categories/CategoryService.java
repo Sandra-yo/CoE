@@ -3,6 +3,8 @@ package com.sandracoe.booklistapp.categories;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sandracoe.booklistapp.Objects.CategoryObj;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +13,12 @@ public class CategoryService {
     @Autowired
     CategoryRepository repository;
 
-    public List<Category> getAllCategories() {
-        List<Category> categories = new ArrayList<Category>();
+    public List<CategoryObj> getAllCategories() {
+        List<CategoryObj> categories = new ArrayList<CategoryObj>();
         repository.findAll()
-        .forEach(categories::add);
+        .forEach(category->{
+            categories.add(new CategoryObj(category));
+        });
         return categories;
     }
 
