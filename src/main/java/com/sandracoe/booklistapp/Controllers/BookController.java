@@ -25,21 +25,21 @@ public class BookController {
         return service.getAllBooks();
     }
     @RequestMapping(method = RequestMethod.POST, value = "/books")
-    public void addBook(@RequestBody Book book) {
-        service.addBook(book);
+    public String addBook(@RequestBody Book book) {
+        return service.addBook(book);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/books/{id}")
-    public void updateBook(@RequestBody Book book, @PathVariable Integer id) {
-        service.updateBook(book);
+    public String updateBook(@RequestBody Book book, @PathVariable Integer id) {
+        return service.updateBook(book);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/books/{id}")
-    public void removeBook(@PathVariable Integer id) {
-        service.removeBook(id);
+    public String removeBook(@PathVariable Integer id) {
+        return service.removeBook(id);
     }
      // Assign category
      @RequestMapping(method = RequestMethod.POST, value = "/books/{id}/category/{categoryId}")
-     public void assignCategory(@PathVariable Integer id, @PathVariable Integer categoryId) {
-         service.assignCategory(id, categoryId);
+     public String assignCategory(@PathVariable Integer id, @PathVariable Integer categoryId) {
+         return service.assignCategory(id, categoryId);
      }
      //see Categories
     @RequestMapping(value = "/books/{id}/category/")

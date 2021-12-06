@@ -24,15 +24,35 @@ public class CategoryService {
         return categories;
     }
 
-    public void addCategory(Category category) {
-        repository.save(category);
+    public String addCategory(Category category) {
+        try {
+            repository.save(category);
+            return "category added successfully";
+        } catch (Exception e) {
+            return "error: "+ e;
+        }
     }
 
-    public void updateCategory(Category category) {
-        repository.save(category);
+    public String updateCategory(Category category) {
+        try {
+            repository.save(category);
+            return "Category added successfully";
+        } catch (Exception e) {
+            return "error: "+ e;
+        }
     }
 
-    public void removeCategory(Integer CategoryId) {
-        repository.deleteById(CategoryId);
+    public String removeCategory(Integer CategoryId) {
+        try {
+            Category category = repository.findById(CategoryId).get();
+            if(!category.getBooks().isEmpty()){
+                category.getBooks().clear();
+               repository.save(category);
+            }
+            repository.deleteById(CategoryId);
+               return "user removed successfully";
+           } catch (Exception e) {
+               return "error: "+e;
+           }
     }
 }

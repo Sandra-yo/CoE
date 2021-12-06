@@ -30,34 +30,64 @@ public class BookService {
         return books;
     }
 
-    public void addBook(Book book) {
-        repository.save(book);
+    public String addBook(Book book) {
+        try {
+            repository.save(book);
+            return "Book added successfully";
+        } catch (Exception e) {
+            return "error: "+ e;
+        }
     }
 
-    public void updateBook(Book book) {
-        repository.save(book);
+    public String updateBook(Book book) {
+        try {
+            repository.save(book);
+            return "Book updated successfully";
+        } catch (Exception e) {
+            return "error: "+e;
+        } 
     }
 
-    public void removeBook(Integer bookId) {
-        repository.deleteById(bookId);
+    public String removeBook(Integer bookId) {
+        try {
+            Book book = repository.findById(bookId).get();
+            if(!book.getUsers().isEmpty()){
+                book.getUsers().clear();
+               repository.save(book);
+            }
+            repository.deleteById(bookId);
+               return "Book removed successfully";
+           } catch (Exception e) {
+               return "error: "+e;
+           }
     }
     //assign a category
-    public void assignCategory(Integer id, Integer categoryId) {
-        Book book = repository.findById(id).get();
-        Category category = categoryRepository.findById(categoryId).get();
-        book.setCategories(category);
-        repository.save(book);
+    public String assignCategory(Integer id, Integer categoryId) {
+        try {
+            Book book = repository.findById(id).get();
+            Category category = categoryRepository.findById(categoryId).get();
+            book.setCategories(category);
+            repository.save(book);
+            return "Category added successfully";
+        } catch (Exception e) {
+            return "verify if category or book already exist";
+        }
     }
 
     //get category from book
     public List<CategoryObj> getCategories(Integer id) {
-        Book book = repository.findById(id).get();
-        List<CategoryObj> categories = new ArrayList<CategoryObj>();
-        book.getCategories()
-        .forEach(category ->{
-            categories.add(new CategoryObj(category));
-            }
-        );
-        return categories;
+        try {
+            Book book = repository.findById(id).get();
+            List<CategoryObj> categories = new ArrayList<CategoryObj>();
+            book.getCategories()
+            .forEach(category ->{
+                categories.add(new CategoryObj(category));
+                }
+            );
+            return categories;
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
 }

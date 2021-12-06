@@ -24,15 +24,15 @@ public class CategoryController {
         return service.getAllCategories();
     }
     @RequestMapping(method = RequestMethod.POST, value = "/categories")
-    public void addCategory(@RequestBody Category category) {
-        service.addCategory(category);
+    public String addCategory(@RequestBody Category category) {
+        return service.addCategory(category);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/categories/{id}")
-    public void updateCategory(@RequestBody Category category, @PathVariable Integer id) {
-        service.updateCategory(category);
+    public String updateCategory(@RequestBody Category category, @PathVariable Integer id) {
+        return service.updateCategory(category);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/categories/{id}")
-    public void removeCategory(@PathVariable Integer id) {
-        service.removeCategory(id);
+    public String removeCategory(@PathVariable Integer id) {
+        return service.removeCategory(id);
     }
 }

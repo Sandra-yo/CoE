@@ -47,4 +47,25 @@ public class Category {
     public String getCategoryName() {
         return categoryName;
     }
+    @Override
+    public int hashCode() {
+       final int prime = 31;
+       int result = 1;
+       result = prime * result+((this.id == null)?0 : this.id.hashCode());
+       return result; 
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Category){
+            Category category = (Category) obj;
+            if(this.id == category.id){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }

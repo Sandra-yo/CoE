@@ -32,39 +32,75 @@ public class UserService {
         return users;
     }
     public UserObj getUsers(Integer id) {  
-        UserObj user = new UserObj(repository.findById(id).get());
-        return user;
+        try {
+            UserObj user = new UserObj(repository.findById(id).get());
+            return user;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public void addUser(Users user) {
-        repository.save(user);
+    public String addUser(Users user) {
+        try {
+            repository.save(user);
+            return "User added successfully";
+        } catch (Exception e) {
+            return "error: "+ e;
+        }
+        
     }
 
-    public void updateUser(Users user) {
-        repository.save(user);
+    public String updateUser(Users user) {
+        try {
+            repository.save(user);
+            return "User updated successfully";
+        } catch (Exception e) {
+            return "error: "+e;
+        } 
     }
 
-    public void removeUser(Integer userId) {
-        repository.deleteById(userId);
+    public String removeUser(Integer userId) {
+        try {
+         Users user = repository.findById(userId).get();
+         if(!user.getBooksLiked().isEmpty()){
+            user.getBooksLiked().clear();
+            repository.save(user);
+         }
+         repository.deleteById(userId);
+            return "user removed successfully";
+        } catch (Exception e) {
+            return "error: "+e;
+        }
+        
     }
 
     // add a book
-    public void addBookLiked(Integer id, Integer bookId) {
-        Book book = bookRepository.findById(bookId).get();
-        Users user = repository.findById(id).get();
-        user.getBooksLiked().add(book);
-        repository.save(user);
+    public String addBookLiked(Integer id, Integer bookId) {
+        try {
+            Book book = bookRepository.findById(bookId).get();
+            Users user = repository.findById(id).get();
+            user.getBooksLiked().add(book);
+            repository.save(user);
+            return "book added successfully";
+        } catch (Exception e) {
+            return "verify if user or book already exist";
+        }
     }
     //get book from the user
     public List<BookObj> getBooks(Integer id) {
-        Users user = repository.findById(id).get();
-        List<BookObj>  books = new ArrayList<BookObj>();
-        user.getBooksLiked()
-        .forEach(book ->{
-            books.add(new BookObj(book));
-            }
-        );
-        return books;
+        try {
+            Users user = repository.findById(id).get();
+            List<BookObj>  books = new ArrayList<BookObj>();
+            user.getBooksLiked()
+            .forEach(book ->{
+                books.add(new BookObj(book));
+                }
+            );
+            return books; 
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
     
 

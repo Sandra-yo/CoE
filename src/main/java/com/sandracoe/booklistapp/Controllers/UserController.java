@@ -30,21 +30,21 @@ public class UserController {
 
     }
     @RequestMapping(method = RequestMethod.POST, value = "/users")
-    public void addUser(@RequestBody Users user) {
-        service.addUser(user);
+    public String addUser(@RequestBody Users user) {
+        return service.addUser(user);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
-    public void updateUser(@RequestBody Users user, @PathVariable Integer id) {
-        service.updateUser(user);
+    public String updateUser(@RequestBody Users user, @PathVariable Integer id) {
+        return service.updateUser(user);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
-    public void removeUser(@PathVariable Integer id) {
-        service.removeUser(id);
+    public String removeUser(@PathVariable Integer id) {
+        return service.removeUser(id);
     }
     // Added books
     @RequestMapping(method = RequestMethod.POST, value = "/users/{id}/book/{bookId}")
-    public void addBookLiked(@PathVariable Integer id, @PathVariable Integer bookId) {
-        service.addBookLiked(id, bookId);
+    public String addBookLiked(@PathVariable Integer id, @PathVariable Integer bookId) {
+        return service.addBookLiked(id, bookId);
     }
     //see books
     @RequestMapping(value = "/users/{id}/book/")
