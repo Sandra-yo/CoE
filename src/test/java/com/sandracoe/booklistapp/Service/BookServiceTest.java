@@ -54,13 +54,16 @@ public class BookServiceTest {
                                 "12120114", 
                                 "April 1, 2007");
 
+
+
     private BookObj b1 = new BookObj(book1);
     private BookObj b2 = new BookObj(book2);
-
+    
+    // categories
     Category category1 = new Category(1,"Horror");
     Category category2 = new Category(2,"Comedy");
 
-
+    //get books
     @Test
     @DisplayName("It should get all existing books")
     public void getAllBooks(){         
@@ -80,6 +83,7 @@ public class BookServiceTest {
         Assertions.assertThat(booksResponse.get(0).getName()).isEqualTo("The Dead Zone");
     }
 
+    //Add a new book successfully
     @Test
     @DisplayName("It should add a new book")
     public void addBook(){                    
@@ -97,12 +101,21 @@ public class BookServiceTest {
         Assertions.assertThat(bookArgumentCaptor.getValue().getName()).isEqualTo("Dead Zone,the");
         Assertions.assertThat(bookArgumentCaptor.getValue()).isEqualTo(book1);
     }
+
     @Test
-    @DisplayName("It should update an existing book")
+    @DisplayName("It should remove an existing book")
     public void removeBook(){
         Mockito.when(repositoryMock.findById(book1.getId())).thenReturn(Optional.of(book1));
         serviceMock.removeBook(1);  
         Mockito.verify(repositoryMock, Mockito.times(1)).deleteById(1);
+    }
+
+    @Test
+    @DisplayName("It shouldn't remove any books ")
+    public void tryToRemoveAnUnexistingBook(){
+        Mockito.when(repositoryMock.findById(5)).thenReturn(null);
+        String response = serviceMock.removeBook(5);  
+        Assertions.assertThat(response).contains("error: ");
     }
     
     @Test
@@ -113,6 +126,25 @@ public class BookServiceTest {
         serviceMock.assignCategory(1,1);  
         Mockito.verify(repositoryMock, Mockito.times(1)).save(bookArgumentCaptor.capture());
         Assertions.assertThat(bookArgumentCaptor.getValue().getCategories().get(0)).isEqualTo(category1);
+    }
+
+    @Test
+    @DisplayName("It should try to assign a category to an no existing book")
+    public void tryAssignCategoryToAnUnexistingBook(){
+        Mockito.when(repositoryMock.findById(1)).thenReturn(null);
+        String response = serviceMock.assignCategory(1,1);   
+        Assertions.assertThat(response).isEqualTo("verify if category or book already exist");
+    }
+
+    @Test
+    @DisplayName("It should assign a no existing category ")
+    public void tryAssignCategoryUnexisting(){
+        Mockito.when(repositoryMock.findById(1)).thenReturn(Optional.of(book1));
+        Mockito.when(categoryRepositoryMock.findById(1)).thenReturn(null);
+        String response = serviceMock.assignCategory(1,1);  
+        
+        Assertions.assertThat(response).isEqualTo("verify if category or book already exist");
+
     }
 
     @Test

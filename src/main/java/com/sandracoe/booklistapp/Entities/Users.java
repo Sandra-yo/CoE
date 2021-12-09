@@ -45,11 +45,24 @@ public class Users {
         this.userName = userName;
         this.password  = password;
     }
+    public Users( String firstName, String lastName, String country, String registrationDate, String userName,
+                 String password){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.registrationDate =registrationDate;
+        this.userName = userName;
+        this.password  = password;
+    }
 
     public void setBooksLiked(Book booksLiked) {
         this.booksLiked.add(booksLiked);
     }
-    
+
+    public void setBooksLiked(List<Book> booksLiked) {
+        this.booksLiked = booksLiked;
+    }
+
     public List<Book> getBooksLiked() {
         
         return booksLiked;
