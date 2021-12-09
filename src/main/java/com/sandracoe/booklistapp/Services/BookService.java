@@ -67,7 +67,8 @@ public class BookService {
         try {
             Book book = repository.findById(id).get();
             Category category = categoryRepository.findById(categoryId).get();
-            book.setCategories(category);
+            //book.setCategories();
+            book.getCategories().add(category);
             repository.save(book);
             return "Category added successfully";
         } catch (Exception e) {

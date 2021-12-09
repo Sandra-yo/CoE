@@ -65,9 +65,9 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    public void setCategories(Category categories) {
+    /*public void setCategories(Category categories) {
         this.categories.add(categories);
-    }
+    }*/
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }

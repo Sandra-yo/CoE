@@ -55,9 +55,9 @@ public class Users {
         this.password  = password;
     }
 
-    public void setBooksLiked(Book booksLiked) {
+    /*public void setBooksLiked(Book booksLiked) {
         this.booksLiked.add(booksLiked);
-    }
+    }*/
 
     public void setBooksLiked(List<Book> booksLiked) {
         this.booksLiked = booksLiked;
