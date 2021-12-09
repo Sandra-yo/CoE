@@ -1,5 +1,6 @@
 package com.sandracoe.booklistapp.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Category {
     private String categoryName;
 
     @ManyToMany(mappedBy = "categories")
-    private List<Book> books;
+    private List<Book> books =  new ArrayList<Book>();
     
 
     public Category(Integer id, String categoryName) {

@@ -35,6 +35,16 @@ public class BookObj {
         this.isbn = isbn;
         this.publishedDate = publishedDate;
     }
+    public BookObj(String name, String description, String publisher, String author, String isbn,
+            String publishedDate) {
+        
+        this.name = name;
+        this.description = description;
+        this.publisher = publisher;
+        this.author = author;
+        this.isbn = isbn;
+        this.publishedDate = publishedDate;
+        }
 
     public Integer getId() {
         return id;

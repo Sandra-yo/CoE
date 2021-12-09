@@ -21,6 +21,7 @@ public class BookService {
     @Autowired
     CategoryRepository categoryRepository;
 
+    
     public List<BookObj> getAllBooks() {
         List<BookObj> books = new ArrayList<BookObj>();
         repository.findAll()

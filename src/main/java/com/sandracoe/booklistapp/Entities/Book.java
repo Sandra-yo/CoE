@@ -1,5 +1,6 @@
 package com.sandracoe.booklistapp.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,10 +36,10 @@ public class Book {
     private String publishedDate;
 
     @ManyToMany(mappedBy = "booksLiked", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Users> users;
+    private List<Users> users =  new ArrayList<Users>();
     
     @ManyToMany
-    private List<Category> categories;
+    private List<Category> categories =  new ArrayList<Category>();
 
     public Book() {
         
@@ -54,9 +55,21 @@ public class Book {
         this.isbn = isbn;
         this.publishedDate = publishedDate;
     }
+    public Book(String name, String description, String publisher, String author, String isbn,
+                String publishedDate) {
+        this.name = name;
+        this.description = description;
+        this.publisher = publisher;
+        this.author = author;
+        this.isbn = isbn;
+        this.publishedDate = publishedDate;
+    }
 
     public void setCategories(Category categories) {
         this.categories.add(categories);
+    }
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
     public List<Category> getCategories() {
         return categories;
