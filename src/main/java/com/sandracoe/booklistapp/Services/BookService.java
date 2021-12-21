@@ -1,11 +1,18 @@
 package com.sandracoe.booklistapp.Services;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.sandracoe.booklistapp.Entities.Book;
 import com.sandracoe.booklistapp.Entities.Category;
 import com.sandracoe.booklistapp.Objects.BookObj;
+import com.sandracoe.booklistapp.Objects.BookWithCategories;
 import com.sandracoe.booklistapp.Objects.CategoryObj;
 import com.sandracoe.booklistapp.Repositories.BookRepository;
 import com.sandracoe.booklistapp.Repositories.CategoryRepository;
@@ -91,5 +98,64 @@ public class BookService {
             return null;
         }
         
+    }
+
+    public Stream<BookObj> getBooksByAuthor(String authorName) {
+        try {
+            List<BookObj> books = new ArrayList<BookObj>();
+            repository.findAll()
+            .forEach(book->{
+                books.add(new BookObj(book));
+            });
+            return books.stream().filter(author -> author.getAuthor().equals(authorName));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Stream<BookObj> getBooksFromYear(int year) {
+        try {
+            List<BookObj> books = new ArrayList<BookObj>();
+            repository.findAll()
+            .forEach(book->{
+                books.add(new BookObj(book));
+            });
+            return books.stream().filter(book -> book.getPublishedDate().endsWith(year+""));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<BookObj> getBooksFromCategory(int categoryId) {
+        try {
+            List<BookObj> books = new ArrayList<BookObj>();
+            Category categorySelected = categoryRepository.findById(categoryId).get();
+            repository.findAll()
+            .forEach(book->{
+                if(book.getCategories().contains(categorySelected)){
+                    books.add(new BookObj(book));
+                }
+            });
+            return books;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public BookWithCategories getOldestBook() {
+        try {
+            List<Book> books = new ArrayList<Book>();
+            repository.findAll()
+            .forEach(book->{
+                books.add(book);
+            });
+            books.stream().sorted(Comparator.comparing(Book::getPublishedDate)).collect(Collectors.toList());
+           // BookObj Oldestbook = new BookObj(books.get(0));
+            //BookWithCategories book1= new BookWithCategories(books.get(0));
+            //List<Category> categories = books.get(0).getCategories();
+            return new BookWithCategories(books.get(0));
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
