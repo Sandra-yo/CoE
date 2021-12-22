@@ -1,10 +1,7 @@
 package com.sandracoe.booklistapp.Services;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -113,7 +110,7 @@ public class BookService {
         }
     }
 
-    public Stream<BookObj> getBooksFromYear(int year) {
+    public Stream<BookObj>  getBooksFromYear(int year) {
         try {
             List<BookObj> books = new ArrayList<BookObj>();
             repository.findAll()
@@ -150,9 +147,7 @@ public class BookService {
                 books.add(book);
             });
             books.stream().sorted(Comparator.comparing(Book::getPublishedDate)).collect(Collectors.toList());
-           // BookObj Oldestbook = new BookObj(books.get(0));
-            //BookWithCategories book1= new BookWithCategories(books.get(0));
-            //List<Category> categories = books.get(0).getCategories();
+           
             return new BookWithCategories(books.get(0));
         } catch (Exception e) {
             return null;

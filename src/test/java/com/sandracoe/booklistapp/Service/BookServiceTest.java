@@ -3,10 +3,12 @@ package com.sandracoe.booklistapp.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import com.sandracoe.booklistapp.Entities.Book;
 import com.sandracoe.booklistapp.Entities.Category;
 import com.sandracoe.booklistapp.Objects.BookObj;
+import com.sandracoe.booklistapp.Objects.BookWithCategories;
 import com.sandracoe.booklistapp.Objects.CategoryObj;
 import com.sandracoe.booklistapp.Repositories.BookRepository;
 import com.sandracoe.booklistapp.Repositories.CategoryRepository;
@@ -162,6 +164,87 @@ public class BookServiceTest {
          
     }
 
+   // books filtered by author
+   @Test
+   @DisplayName("It should return books from a Author")
+   public void getBooksByAuthor(){
+       List<Book> books = Arrays.asList(book1, book2);
+       
+       Mockito.when(repositoryMock.findAll()).thenReturn(books);
+       Stream<BookObj> booksStream = serviceMock.getBooksByAuthor("Jeff Kinney"); 
+       
+       Assertions.assertThat(booksStream.findFirst()).isEqualTo(Optional.of(b2));
+   }
 
+   @Test
+   @DisplayName("It should return a empty list if didn't find the Author")
+   public void getAnyBooksByAuthor(){
+       List<Book> books = Arrays.asList(book1, book2);
+       
+       Mockito.when(repositoryMock.findAll()).thenReturn(books);
+       Stream<BookObj> booksStream = serviceMock.getBooksByAuthor("J.K. Rowling"); 
+       
+       Assertions.assertThat(booksStream.findFirst()).isEqualTo(Optional.empty());
+   }
+    //books published this year
+   @Test
+   @DisplayName("It should return books from a year")
+   public void getBooksFromYear(){
+       List<Book> books = Arrays.asList(book1, book2);
+       
+       Mockito.when(repositoryMock.findAll()).thenReturn(books);
+       Stream<BookObj> booksStream = serviceMock.getBooksFromYear(2007); 
+       
+       Assertions.assertThat(booksStream.findFirst()).isEqualTo(Optional.of(b2));
+   }
+    //books returned by category
+    @Test
+    @DisplayName("It should return books from a category")
+    public void getBooksFromCategory(){
+        List<Book> books = Arrays.asList(book1, book2);
+        book1.getCategories().add(category1);
+        book2.getCategories().add(category2);
+        
+        Mockito.when(repositoryMock.findAll()).thenReturn(books);
+        Mockito.when(categoryRepositoryMock.findById(1)).thenReturn(Optional.of(category1));
+        List<BookObj> booksStream = serviceMock.getBooksFromCategory(1); 
+        
+        Assertions.assertThat(booksStream.get(0)).isEqualTo(b1);
+        
+    }
+
+    //books returned by category without books
+    @Test
+    @DisplayName("It should return books from a category")
+    public void getBooksFromCategoryWithoutBooks(){
+        List<Book> books = Arrays.asList(book1, book2);
+        book1.getCategories().add(category1);
+        book2.getCategories().add(category1);
+        
+        Mockito.when(repositoryMock.findAll()).thenReturn(books);
+        Mockito.when(categoryRepositoryMock.findById(2)).thenReturn(Optional.of(category2));
+        List<BookObj> booksStream = serviceMock.getBooksFromCategory(1); 
+        
+        Assertions.assertThat(booksStream).isEqualTo(null);
+        
+    }
+
+    //books returned by category without books
+    @Test
+    @DisplayName("It should return books from a category")
+    public void getOldestBook(){
+        List<Book> books = Arrays.asList(book1, book2);
+        book1.getCategories().add(category1);
+        book1.getCategories().add(category2);
+
+        book2.getCategories().add(category2);
+        
+        BookWithCategories book = new BookWithCategories(book1);
+        Mockito.when(repositoryMock.findAll()).thenReturn(books);
+        BookWithCategories Oldestbook = serviceMock.getOldestBook(); 
+        
+        Assertions.assertThat(Oldestbook).isEqualTo(book);
+    
+}
     
 }

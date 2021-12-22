@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sandracoe.booklistapp.Entities.Book;
-import com.sandracoe.booklistapp.Entities.Category;
 
 public class BookWithCategories extends BookObj {
 
