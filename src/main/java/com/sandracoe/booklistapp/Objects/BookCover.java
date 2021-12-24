@@ -1,4 +1,4 @@
-package com.sandracoe.booklistapp.Services;
+package com.sandracoe.booklistapp.Objects;
 
 public class BookCover {
     private String url;

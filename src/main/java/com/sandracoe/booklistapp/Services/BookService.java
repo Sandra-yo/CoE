@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import com.sandracoe.booklistapp.Entities.Book;
 import com.sandracoe.booklistapp.Entities.Category;
+import com.sandracoe.booklistapp.Objects.BookCover;
 import com.sandracoe.booklistapp.Objects.BookObj;
 import com.sandracoe.booklistapp.Objects.BookWithCategories;
 import com.sandracoe.booklistapp.Objects.CategoryObj;

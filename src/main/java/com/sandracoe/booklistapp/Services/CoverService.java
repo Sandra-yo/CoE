@@ -5,7 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import com.sandracoe.booklistapp.Objects.BookObj;
+import com.sandracoe.booklistapp.Objects.BookCover;
 
 import org.springframework.stereotype.Service;
 
