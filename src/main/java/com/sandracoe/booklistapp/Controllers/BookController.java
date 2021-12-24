@@ -30,7 +30,7 @@ public class BookController {
     public String addBook(@RequestBody Book book) {
         return service.addBook(book);
     }
-    @RequestMapping(method = RequestMethod.PUT, value = "/books/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/books/ {id}")
     public String updateBook(@RequestBody Book book, @PathVariable Integer id) {
         return service.updateBook(book);
     }

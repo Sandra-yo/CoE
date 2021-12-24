@@ -34,6 +34,8 @@ public class Book {
     private String isbn;
     @Column(name = "publishedDate")
     private String publishedDate;
+    @Column(name = "bookCover")
+    private String bookCover;
 
     @ManyToMany(mappedBy = "booksLiked", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Users> users =  new ArrayList<Users>();
@@ -65,9 +67,14 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    /*public void setCategories(Category categories) {
-        this.categories.add(categories);
-    }*/
+    public void setBookCover(String bookCover) {
+        this.bookCover = bookCover;
+    }
+
+    public String getBookCover() {
+        return bookCover;
+    }
+
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }

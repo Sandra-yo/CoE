@@ -36,6 +36,10 @@ public class BookService {
     }
 
     public String addBook(Book book) {
+        //get cover
+        BookCover cover = CoverService.getCover(book.getIsbn()); 
+        //add
+        book.setBookCover(cover.getUrl());
         try {
             repository.save(book);
             return "Book added successfully";
@@ -130,7 +134,7 @@ public class BookService {
             repository.findAll()
             .forEach(book->{
                 if(book.getCategories().contains(categorySelected)){
-                    books.add(new BookObj(book));
+                    books.add(new BookWithCategories(book));
                 }
             });
             return books;
