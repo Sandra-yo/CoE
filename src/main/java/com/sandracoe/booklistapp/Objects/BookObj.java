@@ -11,11 +11,21 @@ public class BookObj {
     private String author;
     private String isbn;
     private String publishedDate;
+    private String bookCover;
+
 
     public BookObj() {
         
     }
    
+    public String getBookCover() {
+        return bookCover;
+    }
+
+    public void setBookCover(String bookCover) {
+        this.bookCover = bookCover;
+    }
+
     public BookObj(Book book) {
         this.id = book.getId();
         this.name = book.getName();
@@ -24,6 +34,7 @@ public class BookObj {
         this.author = book.getAuthor();
         this.isbn = book.getIsbn();
         this.publishedDate = book.getPublishedDate();
+        this.bookCover = book.getBookCover();
     }
     public BookObj(Integer id,String name, String description, String publisher, String author, String isbn,
                 String publishedDate) {
